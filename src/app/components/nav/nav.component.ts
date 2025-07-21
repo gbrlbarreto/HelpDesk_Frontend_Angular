@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-nav',
   imports: [],
-  templateUrl: './nav.html',
-  styleUrl: './nav.css'
+  templateUrl: './nav.component.html',
+  styleUrl: './nav.component.css'
 })
-export class Nav {
+export class NavComponent {
 
 }

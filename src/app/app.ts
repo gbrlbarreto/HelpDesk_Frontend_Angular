@@ -24,13 +24,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 
 // Componentes do projeto
-import { Nav } from './components/nav/nav';
+import { NavComponent } from './components/nav/nav.component';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, MatButtonModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatFormFieldModule,
     MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatSelectModule, 
-    MatTableModule, MatRadioModule, MatInputModule, MatIconModule, MatListModule, MatCardModule, Nav],
+    MatTableModule, MatRadioModule, MatInputModule, MatIconModule, MatListModule, MatCardModule, NavComponent],
   templateUrl: 'app.html'
 })
 export class App {
