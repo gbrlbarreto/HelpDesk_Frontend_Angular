@@ -5,9 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 
+import { HeaderComponent } from '../../components/header/header.component';
+
 @Component({
   selector: 'app-nav',
-  imports: [MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, RouterOutlet],
+  imports: [MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, RouterOutlet, HeaderComponent],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
