@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 // Para trabalhar com formulários no Angular 12
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
