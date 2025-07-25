@@ -15,9 +15,10 @@ import { HeaderComponent } from '../../components/header/header.component';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-
+  showFiller = false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    //this.router.navigate(['home'])
   }
 }
