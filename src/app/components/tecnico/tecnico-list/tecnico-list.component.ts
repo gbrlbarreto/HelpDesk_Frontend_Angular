@@ -7,7 +7,7 @@ import { Tecnico } from '../../../models/tecnico';
   selector: 'app-tecnico-list',
   imports: [MatTableModule, MatPaginatorModule],
   templateUrl: './tecnico-list.component.html',
-  styleUrl: './tecnico-list.component.css'
+  styleUrls: ['./tecnico-list.component.css']
 })
 export class TecnicoListComponent implements AfterViewInit {
 
