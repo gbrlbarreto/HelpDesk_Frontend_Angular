@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="form mat-elevation-z8">
+    <form class="form mat-elevation-z8" (ngSubmit)="onSubmit()">
 
         <h1>Help Desk - Login System</h1>
 
@@ -7,14 +7,14 @@
 
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
-            <input type="email" matInput>
+            <input [formControl]="email" name="email" type="email" matInput required>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-label>Senha</mat-label>
-            <input type="password" matInput>
+            <input [formControl]="senha" name="senha" type="password" matInput required>
         </mat-form-field>
 
-        <button class="full-width mat-elevation-z4"  matButton="outlined">Login</button>
+        <button [disabled]="!validaCampos()" class="full-width mat-elevation-z4"  matButton="outlined" type="submit">Login</button>
     </form>
 </div>
