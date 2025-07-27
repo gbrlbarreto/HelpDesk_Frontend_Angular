@@ -4,6 +4,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl, FormsModule, Validators, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { Credenciais } from '../../models/credenciais';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent {
   email = new FormControl(null, Validators.email);
   senha = new FormControl(null, Validators.minLength(3));
 
-  constructor() {
+  constructor(private  toastr : ToastrService) {
     // Sincroniza o valor do form com creds
     this.email.valueChanges.subscribe(value => this.creds.email = value ?? '');
     this.senha.valueChanges.subscribe(value => this.creds.senha = value ?? '');
@@ -33,6 +34,11 @@ export class LoginComponent {
     } else{
       return false;
     }
+  }
+
+  logar() {
+    this.toastr.error('Usuario e/ou senha inválidos!', 'Login');
+    this.senha.setValue('');
   }
 
   onSubmit() {

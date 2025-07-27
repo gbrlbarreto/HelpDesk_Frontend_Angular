@@ -15,6 +15,6 @@
             <input [formControl]="senha" name="senha" type="password" matInput required>
         </mat-form-field>
 
-        <button [disabled]="!validaCampos()" class="full-width mat-elevation-z4"  matButton="outlined" type="submit">Login</button>
+        <button (click)="logar()" [disabled]="!validaCampos()" class="full-width mat-elevation-z4"  matButton="outlined" type="submit">Login</button>
     </form>
 </div>
