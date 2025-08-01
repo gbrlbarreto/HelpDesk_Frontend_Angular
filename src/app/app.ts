@@ -4,9 +4,6 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 // Para trabalhar com formulários no Angular 12
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-// Para realizar requisições HTTP
-import { HttpClientModule } from '@angular/common/http';
-
 // Imports para componentes do Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -28,7 +25,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule, FormsModule, ReactiveFormsModule, HttpClientModule, MatFormFieldModule,
+  imports: [RouterOutlet, MatButtonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule,
     MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatSelectModule, 
     MatTableModule, MatRadioModule, MatInputModule, MatIconModule, MatListModule, MatCardModule],
   templateUrl: 'app.html'
