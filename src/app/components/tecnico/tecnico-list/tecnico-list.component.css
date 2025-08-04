@@ -12,3 +12,18 @@
 table {
   width: 100%;
 }
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+button {
+  width: 100%;
+  margin: 0px 20px 20px 0px;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+}
