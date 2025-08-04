@@ -27,7 +27,7 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-root',
   imports: [RouterOutlet, MatButtonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule,
     MatPaginatorModule, MatSnackBarModule, MatCheckboxModule, MatToolbarModule, MatSidenavModule, MatSelectModule, 
-    MatTableModule, MatRadioModule, MatInputModule, MatIconModule, MatListModule, MatCardModule],
+    MatTableModule, MatRadioModule, MatInputModule, MatIconModule, MatListModule, MatCardModule, RouterModule],
   templateUrl: 'app.html'
 })
 export class App {
