@@ -10,6 +10,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 
+import { provideNgxMask } from 'ngx-mask';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withFetch()),
@@ -22,6 +24,7 @@ export const appConfig: ApplicationConfig = {
       timeOut: 4000,
       closeButton: true,
       progressBar: true
-    })
+    }),
+    provideNgxMask()
   ]
 };

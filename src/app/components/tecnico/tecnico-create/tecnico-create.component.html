@@ -4,37 +4,61 @@
         <img class="fullWidth" src="img/tecnico-create.svg" alt="Imagem de Tecnico Create">
 
         <section class="section">
-            <mat-checkbox class="margin">Admin</mat-checkbox>
-            <mat-checkbox class="margin">Cliente</mat-checkbox>
-            <mat-checkbox class="margin">Técnico</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(0)" class="margin">Admin</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(1)" class="margin">Cliente</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(2)" class="margin">Técnico</mat-checkbox>
         </section>
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>Nome</mat-label>
-            <input matInput placeholder="">
-            <mat-icon matSuffix>person</mat-icon>
+            <input name="nome" [formControl]="nome" required matInput maxlength="55" placeholder="">
+            <mat-icon class="material-symbols-outlined" matSuffix>person</mat-icon>
+            @if (nome.hasError('required') && cpf.touched) {
+            <mat-error>Nome é obrigatório.</mat-error>
+            }
+            @if (nome.hasError('minlength') && nome.touched) {
+            <mat-error>Nome inválido.</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>CPF</mat-label>
-            <input matInput placeholder="">
+            <input name="cpf" [formControl]="cpf" mask="000.000.000-00" required matInput placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>pin</mat-icon>
+            @if (cpf.hasError('required') && cpf.touched) {
+            <mat-error>CPF é obrigatório.</mat-error>
+            }
+            @if (cpf.hasError('cpfInvalido') && cpf.touched) {
+            <mat-error>CPF inválido.</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="">
-            <mat-icon matSuffix>email</mat-icon>
+            <input name="email" [formControl]="email" required type="email" matInput placeholder="">
+            <mat-icon class="material-symbols-outlined" matSuffix>email</mat-icon>
+            @if (email.hasError('required') && email.touched) {
+            <mat-error>Email é obrigatório.</mat-error>
+            }
+            @if (email.hasError('emailInvalido') && email.touched) {
+            <mat-error>Email inválido.</mat-error>
+            }
         </mat-form-field>
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>Senha</mat-label>
-            <input type="password" matInput placeholder="">
-            <mat-icon matSuffix>password</mat-icon>
+            <input name="senha" [formControl]="senha" required type="password" matInput placeholder="">
+            <mat-icon class="material-symbols-outlined" matSuffix>password</mat-icon>
+            @if (senha.hasError('required') && cpf.touched) {
+            <mat-error>Senha é obrigatória.</mat-error>
+            }
+            @if (senha.hasError('minlength') && senha.touched) {
+            <mat-error>A senha deve ter pelo menos 3 caracteres.</mat-error>
+            }
         </mat-form-field>
 
-        <button matButton="filled" class="fullWidth mat-elevation-z4">Cadastrar</button>
-        <button matButton="filled" class="cancel-button fullWidth mat-elevation-z4">Cancelar</button>
+        <button (click)="create()" [disabled]="!validaCampos()" matButton="filled" class="fullWidth mat-elevation-z4">Cadastrar</button>
+        <button type="button" routerLink="../" matButton="filled" class="cancel-button fullWidth mat-elevation-z4">Cancelar</button>
     </form>
 
     <p class="fullWidth">Desenvolvido por Gabriel Barreto</p>
