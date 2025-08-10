@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './tecnico-delete.component.html',
   styleUrl: './tecnico-delete.component.css'
 })
-export class TecnicoDelete {
+export class TecnicoDeleteComponent {
 
 }
