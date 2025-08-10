@@ -1,7 +1,7 @@
 <div class="container mat-elevation-z8">
     <form class="form">
-        <h1 class="fullWidth">Cadastrar Técnico</h1>
-        <img class="fullWidth" src="img/tecnico-create.svg" alt="Imagem de Tecnico Create">
+        <h1 class="fullWidth">Atualizar Técnico</h1>
+        <img class="fullWidth" src="img/tecnico-create.svg" alt="Imagem de Tecnico Update">
 
         <section class="section">
             <mat-checkbox (click)="addPerfil(0)" class="margin">Admin</mat-checkbox>
@@ -57,8 +57,8 @@
             }
         </mat-form-field>
 
-        <button (click)="create()" [disabled]="!validaCampos()" matButton="filled" class="fullWidth mat-elevation-z4">Cadastrar</button>
-        <button type="button" routerLink="../" matButton="filled" class="cancel-button fullWidth mat-elevation-z4">Cancelar</button>
+        <button (click)="update()" [disabled]="!validaCampos()" matButton="filled" class="fullWidth mat-elevation-z4">Atualizar</button>
+        <button type="button" routerLink="../../" matButton="filled" class="cancel-button fullWidth mat-elevation-z4">Cancelar</button>
     </form>
 
     <p class="fullWidth">Desenvolvido por Gabriel Barreto</p>

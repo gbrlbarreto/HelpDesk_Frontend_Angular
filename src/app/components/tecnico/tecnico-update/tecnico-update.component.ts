@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, model, Component } from '@angular/core';
+import { ChangeDetectionStrategy, model, Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { TecnicoService } from '../../../services/tecnico.service';
@@ -13,15 +13,15 @@ import { Tecnico } from '../../../models/tecnico';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-tecnico-create',
+  selector: 'app-tecnico-update',
   standalone: true,
   imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, NgxMaskDirective, ReactiveFormsModule, RouterLink, RouterModule],
-  templateUrl: './tecnico-create.component.html',
-  styleUrls: ['./tecnico-create.component.css'],
+  templateUrl: './tecnico-update.component.html',
+  styleUrls: ['./tecnico-update.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
-export class TecnicoCreateComponent {
+export class TecnicoUpdateComponent implements OnInit {
   readonly checked = model(false);
   readonly indeterminate = model(false);
   readonly labelPosition = model<'before' | 'after'>('after');
@@ -42,7 +42,12 @@ export class TecnicoCreateComponent {
   email: FormControl = new FormControl(null, [Validators.required, this.validaEmail.bind(this)]);
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
-  constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router) { }
+  constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.tecnico.id = this.route.snapshot.paramMap.get('id');
+    this.findById();
+  }
 
   validaCpf(control: AbstractControl): ValidationErrors | null {
     const cpf = (control.value || '').replace(/\D/g, '');
@@ -81,15 +86,27 @@ export class TecnicoCreateComponent {
     return `${dia}/${mes}/${ano}`;
   }
 
-  create(): void {
+  findById(): void {
+    this.service.findById(this.tecnico.id).subscribe(resposta => {
+      resposta.perfis = [];
+      this.tecnico = resposta;
+
+      this.nome.setValue(this.tecnico.nome);
+      this.cpf.setValue(this.tecnico.cpf);
+      this.email.setValue(this.tecnico.email);
+      this.senha.setValue(this.tecnico.senha);
+    });
+  }
+
+  update(): void {
     this.tecnico.nome = this.nome.value;
     this.tecnico.cpf = this.cpf.value;
     this.tecnico.email = this.email.value;
     this.tecnico.senha = this.senha.value;
     this.tecnico.dataCriacao = this.formatarDataAtual();
 
-    this.service.create(this.tecnico).subscribe(() => {
-      this.toastr.success('Técnico cadastrado com sucesso', 'Cadastro');
+    this.service.update(this.tecnico).subscribe(() => {
+      this.toastr.success('Técnico atualizado com sucesso', 'Atualização');
       this.router.navigate(['/tecnicos']);
     }, ex => {
       if(ex.error.erros){
