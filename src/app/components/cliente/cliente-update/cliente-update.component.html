@@ -1,17 +1,17 @@
 <div class="container mat-elevation-z8">
     <form class="form">
-        <h1 class="fullWidth">Deletar Técnico</h1>
-        <img class="fullWidth" src="img/tecnico-create.svg" alt="Imagem de Tecnico Delete">
+        <h1 class="fullWidth">Atualizar Cliente</h1>
+        <img class="img-custom" src="img/cliente-create.png" alt="Imagem de Cliente Update">
 
         <section class="section">
-            <mat-checkbox [checked]="tecnico.perfis.includes('ADMIN')" [disabled]="true" class="margin">Admin</mat-checkbox>
-            <mat-checkbox [checked]="tecnico.perfis.includes('CLIENTE')" [disabled]="true" class="margin">Cliente</mat-checkbox>
-            <mat-checkbox [checked]="tecnico.perfis.includes('TECNICO')" [disabled]="true" class="margin">Técnico</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(0)" class="margin">Admin</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(1)" [checked]="true" class="margin">Cliente</mat-checkbox>
+            <mat-checkbox (click)="addPerfil(2)" class="margin">Técnico</mat-checkbox>
         </section>
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>Nome</mat-label>
-            <input name="nome" [formControl]="nome" matInput>
+            <input name="nome" [formControl]="nome" required matInput maxlength="55" placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>person</mat-icon>
             @if (nome.hasError('required') && cpf.touched) {
             <mat-error>Nome é obrigatório.</mat-error>
@@ -23,7 +23,7 @@
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>CPF</mat-label>
-            <input name="cpf" [formControl]="cpf" mask="000.000.000-00" matInput>
+            <input name="cpf" [formControl]="cpf" mask="000.000.000-00" required matInput placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>pin</mat-icon>
             @if (cpf.hasError('required') && cpf.touched) {
             <mat-error>CPF é obrigatório.</mat-error>
@@ -35,7 +35,7 @@
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>Email</mat-label>
-            <input name="email" [formControl]="email" type="email" matInput>
+            <input name="email" [formControl]="email" required type="email" matInput placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>email</mat-icon>
             @if (email.hasError('required') && email.touched) {
             <mat-error>Email é obrigatório.</mat-error>
@@ -47,7 +47,7 @@
 
         <mat-form-field class="fullWidth" appearance="fill">
             <mat-label>Senha</mat-label>
-            <input name="senha" [formControl]="senha" type="password" matInput>
+            <input name="senha" [formControl]="senha" required type="password" matInput placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>password</mat-icon>
             @if (senha.hasError('required') && cpf.touched) {
             <mat-error>Senha é obrigatória.</mat-error>
@@ -57,7 +57,7 @@
             }
         </mat-form-field>
 
-        <button (click)="delete()" matButton="filled" class="delete-button fullWidth mat-elevation-z4">Deletar</button>
+        <button (click)="update()" [disabled]="!validaCampos()" matButton="filled" class="fullWidth mat-elevation-z4">Atualizar</button>
         <button type="button" routerLink="../../" matButton="filled" class="cancel-button fullWidth mat-elevation-z4">Cancelar</button>
     </form>
 

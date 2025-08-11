@@ -8,25 +8,25 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
-import { TecnicoService } from '../../../services/tecnico.service';
-import { Tecnico } from '../../../models/tecnico';
+import { ClienteService } from '../../../services/cliente.service';
+import { Cliente } from '../../../models/cliente';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-tecnico-delete',
+  selector: 'app-cliente-delete',
   standalone: true,
   imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, NgxMaskDirective, ReactiveFormsModule, RouterLink, RouterModule],
-  templateUrl: './tecnico-delete.component.html',
-  styleUrls: ['./tecnico-delete.component.css'],
+  templateUrl: './cliente-delete.component.html',
+  styleUrls: ['./cliente-delete.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TecnicoDeleteComponent implements OnInit {
+export class ClienteDeleteComponent implements OnInit {
   readonly checked = model(false);
   readonly indeterminate = model(false);
   readonly labelPosition = model<'before' | 'after'>('after');
   readonly disabled = model(false);
 
-  tecnico: Tecnico = {
+  cliente: Cliente = {
     id: '',
     nome: '',
     cpf: '',
@@ -41,37 +41,37 @@ export class TecnicoDeleteComponent implements OnInit {
   email: FormControl = new FormControl(null);
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
-  constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: ClienteService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.tecnico.id = this.route.snapshot.paramMap.get('id');
+    this.cliente.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
   findById(): void {
-    this.service.findById(this.tecnico.id).subscribe(resposta => {
-      this.tecnico = resposta;
+    this.service.findById(this.cliente.id).subscribe(resposta => {
+      this.cliente = resposta;
 
-      this.nome.setValue(this.tecnico.nome);
+      this.nome.setValue(this.cliente.nome);
       this.nome.disable();
-      this.cpf.setValue(this.tecnico.cpf);
+      this.cpf.setValue(this.cliente.cpf);
       this.cpf.disable();
-      this.email.setValue(this.tecnico.email);
+      this.email.setValue(this.cliente.email);
       this.email.disable();
-      this.senha.setValue(this.tecnico.senha);
+      this.senha.setValue(this.cliente.senha);
       this.senha.disable();
     });
   }
 
   delete(): void {
-    this.tecnico.nome = this.nome.value;
-    this.tecnico.cpf = this.cpf.value;
-    this.tecnico.email = this.email.value;
-    this.tecnico.senha = this.senha.value;
+    this.cliente.nome = this.nome.value;
+    this.cliente.cpf = this.cpf.value;
+    this.cliente.email = this.email.value;
+    this.cliente.senha = this.senha.value;
 
-    this.service.delete(this.tecnico.id).subscribe(() => {
-      this.toastr.success('Técnico deletado com sucesso', 'Exclusão');
-      this.router.navigate(['/tecnicos']);
+    this.service.delete(this.cliente.id).subscribe(() => {
+      this.toastr.success('Cliente deletado com sucesso', 'Exclusão');
+      this.router.navigate(['/clientes']);
     }, ex => {
       if(ex.error.erros){
         ex.error.erros.forEach(element => {
