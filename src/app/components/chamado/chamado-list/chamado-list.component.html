@@ -5,13 +5,19 @@
 
     <mat-form-field>
         <mat-label>Busca</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex: chamado 01" #input>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Chamado 01" #input>
     </mat-form-field>
 
     <mat-radio-group>
-        <mat-radio-button class="margin-radio" value="after">ABERTO</mat-radio-button>
-        <mat-radio-button class="margin-radio" value="before">ANDAMENTO</mat-radio-button>
-        <mat-radio-button class="margin-radio" value="before">ENCERRADO</mat-radio-button>
+        <mat-radio-button (click)="findAll()" class="margin-radio" value="before">TODOS</mat-radio-button>
+        <p style="padding-left: 40px;"><strong>Filtro de Status:</strong></p>
+        <mat-radio-button (click)="orderByStatus(0)" value="0" class="margin-radio" value="after">ABERTO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(1)" value="1" class="margin-radio" value="before">EM ANDAMENTO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(2)" value="2" class="margin-radio" value="before">ENCERRADO</mat-radio-button>
+        <p style="padding-left: 80px;"><strong>Filtro de Prioridade:</strong></p>
+        <mat-radio-button (click)="orderByPrioridade(0)" value="0" class="margin-radio" value="after">BAIXA</mat-radio-button>
+        <mat-radio-button (click)="orderByPrioridade(1)" value="1" class="margin-radio" value="before">MÉDIA</mat-radio-button>
+        <mat-radio-button (click)="orderByPrioridade(2)" value="2" class="margin-radio" value="before">ALTA</mat-radio-button>
     </mat-radio-group>
 
     <div class="mat-elevation-z8">
@@ -42,14 +48,14 @@
                 <td mat-cell *matCellDef="let element"> {{element.dataAbertura}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="prioridade">
-                <th mat-header-cell *matHeaderCellDef> Prioridade </th>
-                <td mat-cell *matCellDef="let element"> {{element.prioridade}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef> Status </th>
-                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                <td mat-cell *matCellDef="let element"> {{retornaStatus(element.status)}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="prioridade">
+                <th mat-header-cell *matHeaderCellDef> Prioridade </th>
+                <td mat-cell *matCellDef="let element"> {{retornaPrioridade(element.prioridade)}} </td>
             </ng-container>
 
             <ng-container matColumnDef="acoes">
