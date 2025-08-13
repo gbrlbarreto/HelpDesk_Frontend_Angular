@@ -51,8 +51,20 @@ h1 {
   text-align: center;
 }
 
-mat-radio-group {
+.radio-toolbar {
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+.radio-toolbar mat-radio-button {
+  margin-right: 8px;
+}
+
+.radio-label {
+  font-weight: bold;
+  margin: 0 8px;
 }

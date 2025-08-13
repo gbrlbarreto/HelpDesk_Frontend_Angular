@@ -7,17 +7,17 @@
         <mat-label>Busca</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex: Chamado 01" #input>
     </mat-form-field>
-
-    <mat-radio-group>
-        <mat-radio-button (click)="findAll()" class="margin-radio">TODOS</mat-radio-button>
-        <p style="padding-left: 40px;"><strong>Filtro de Status:</strong></p>
-        <mat-radio-button (click)="orderByStatus(0)" value="0" class="margin-radio">ABERTO</mat-radio-button>
-        <mat-radio-button (click)="orderByStatus(1)" value="1" class="margin-radio">EM ANDAMENTO</mat-radio-button>
-        <mat-radio-button (click)="orderByStatus(2)" value="2" class="margin-radio">ENCERRADO</mat-radio-button>
-        <p style="padding-left: 80px;"><strong>Filtro de Prioridade:</strong></p>
-        <mat-radio-button (click)="orderByPrioridade(0)" value="0" class="margin-radio">BAIXA</mat-radio-button>
-        <mat-radio-button (click)="orderByPrioridade(1)" value="1" class="margin-radio">MÉDIA</mat-radio-button>
-        <mat-radio-button (click)="orderByPrioridade(2)" value="2" class="margin-radio">ALTA</mat-radio-button>
+    
+    <mat-radio-group class="radio-toolbar">
+        <mat-radio-button value="todos" (click)="findAll()">TODOS</mat-radio-button>
+        <span class="radio-label">Filtro de Status:</span>
+        <mat-radio-button value="0" (click)="orderByStatus(0)">ABERTO</mat-radio-button>
+        <mat-radio-button value="1" (click)="orderByStatus(1)">EM ANDAMENTO</mat-radio-button>
+        <mat-radio-button value="2" (click)="orderByStatus(2)">ENCERRADO</mat-radio-button>
+        <span class="radio-label">Filtro de Prioridade:</span>
+        <mat-radio-button value="0" (click)="orderByPrioridade(0)">BAIXA</mat-radio-button>
+        <mat-radio-button value="1" (click)="orderByPrioridade(1)">MÉDIA</mat-radio-button>
+        <mat-radio-button value="2" (click)="orderByPrioridade(2)">ALTA</mat-radio-button>
     </mat-radio-group>
 
     <div class="mat-elevation-z8">
