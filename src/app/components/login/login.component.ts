@@ -54,9 +54,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('Dados do formulário:', this.creds);
-    // Aqui você pode chamar um serviço de autenticação, por exemplo
-    // this.authService.login(this.creds).subscribe(...)
+    //console.log('Dados do formulário:', this.creds); //Log das credenciais
   }
 
 }
