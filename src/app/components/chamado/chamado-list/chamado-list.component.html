@@ -9,15 +9,15 @@
     </mat-form-field>
 
     <mat-radio-group>
-        <mat-radio-button (click)="findAll()" class="margin-radio" value="before">TODOS</mat-radio-button>
+        <mat-radio-button (click)="findAll()" class="margin-radio">TODOS</mat-radio-button>
         <p style="padding-left: 40px;"><strong>Filtro de Status:</strong></p>
-        <mat-radio-button (click)="orderByStatus(0)" value="0" class="margin-radio" value="after">ABERTO</mat-radio-button>
-        <mat-radio-button (click)="orderByStatus(1)" value="1" class="margin-radio" value="before">EM ANDAMENTO</mat-radio-button>
-        <mat-radio-button (click)="orderByStatus(2)" value="2" class="margin-radio" value="before">ENCERRADO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(0)" value="0" class="margin-radio">ABERTO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(1)" value="1" class="margin-radio">EM ANDAMENTO</mat-radio-button>
+        <mat-radio-button (click)="orderByStatus(2)" value="2" class="margin-radio">ENCERRADO</mat-radio-button>
         <p style="padding-left: 80px;"><strong>Filtro de Prioridade:</strong></p>
-        <mat-radio-button (click)="orderByPrioridade(0)" value="0" class="margin-radio" value="after">BAIXA</mat-radio-button>
-        <mat-radio-button (click)="orderByPrioridade(1)" value="1" class="margin-radio" value="before">MÉDIA</mat-radio-button>
-        <mat-radio-button (click)="orderByPrioridade(2)" value="2" class="margin-radio" value="before">ALTA</mat-radio-button>
+        <mat-radio-button (click)="orderByPrioridade(0)" value="0" class="margin-radio">BAIXA</mat-radio-button>
+        <mat-radio-button (click)="orderByPrioridade(1)" value="1" class="margin-radio">MÉDIA</mat-radio-button>
+        <mat-radio-button (click)="orderByPrioridade(2)" value="2" class="margin-radio">ALTA</mat-radio-button>
     </mat-radio-group>
 
     <div class="mat-elevation-z8">

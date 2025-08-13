@@ -7,13 +7,17 @@
 
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
-            <input [formControl]="email" name="email" type="email" matInput required>
+            <input [formControl]="email" name="email" type="email" matInput>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-label>Senha</mat-label>
-            <input [formControl]="senha" name="senha" type="password" matInput required>
-        </mat-form-field>
+            <input [formControl]="senha" name="senha" matInput [type]="hide() ? 'password' : 'text'" />
+            <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()">
+                <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            </mat-form-field>
 
         <button (click)="logar()" [disabled]="!validaCampos()" class="full-width mat-elevation-z4"  matButton="outlined" type="submit">Login</button>
     </form>
