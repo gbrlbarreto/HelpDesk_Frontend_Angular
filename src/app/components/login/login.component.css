@@ -21,6 +21,10 @@ h1 {
     text-align: center;
 }
 
+.visibility-button{
+  margin: auto;
+}
+
 button {
   margin-top: 1.5rem;
 }
