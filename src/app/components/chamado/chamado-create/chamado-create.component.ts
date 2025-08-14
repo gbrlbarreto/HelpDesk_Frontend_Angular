@@ -6,8 +6,6 @@ import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { NgxMaskDirective } from 'ngx-mask';
 import { ToastrService } from 'ngx-toastr';
 import { MatSelectModule } from '@angular/material/select';
 import { Chamado } from '../../../models/chamado';
@@ -20,7 +18,7 @@ import { ChamadoService } from '../../../services/chamado.service';
 @Component({
   selector: 'app-chamado-create',
   standalone: true,
-  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, NgxMaskDirective, ReactiveFormsModule, RouterLink, RouterModule],
+  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, ReactiveFormsModule, RouterLink, RouterModule],
   templateUrl: './chamado-create.component.html',
   styleUrls: ['./chamado-create.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
