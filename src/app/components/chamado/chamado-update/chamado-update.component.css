@@ -1,0 +1,88 @@
+.container {
+    width: 45%;
+    margin: auto auto 1.5rem auto;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+}
+
+.mat-elevation-z4 {
+  box-shadow: 0px 2px 3px -2px rgba(0,0,0,.2),  
+              0px 4px 5px 1px rgba(0,0,0,.14),  
+              0px 2px 8px 1px rgba(0,0,0,.12);
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2),
+              0px 8px 10px 1px rgba(0,0,0,.14),
+              0px 3px 14px 2px rgba(0,0,0,.12);
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.status-prioridade {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status-prioridade mat-form-field {
+    width: 48%;
+}
+
+.descricao {
+    min-height: 6rem;
+    max-height: 10rem;
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.margin {
+    margin: 0 10px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    color: black(76, 76, 76);
+    opacity: .8;
+}
+
+.cancel-button {
+  color: white;
+  background-color: red;
+}
+
+.cancel-button:hover {
+  background-color: rgb(219, 80, 80);
+  
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    text-align: center;
+    height: 15rem;
+    margin: auto;
+}
+
+button {
+    margin-top: .5rem;
+}
+
+p {
+    text-align: center;
+    margin-top: 2rem;
+    opacity: .5;
+}
