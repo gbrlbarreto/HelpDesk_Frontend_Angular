@@ -5,13 +5,13 @@
 
         <mat-form-field class="fullWidth" appearance="outline">
             <mat-label>Título do chamado</mat-label>
-            <input name="titulo" required matInput maxlength="55" placeholder="">
+            <input name="titulo" [formControl]="titulo" required matInput maxlength="55" placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>support</mat-icon>
         </mat-form-field>
         <div class="status-prioridade">
             <mat-form-field appearance="outline">
                 <mat-label>Selecione um status</mat-label>
-                <mat-select required>
+                <mat-select name="status" [formControl]="status" required>
                     <mat-option value="0">ABERTO</mat-option>
                     <mat-option value="1">EM ANDAMENTO</mat-option>
                     <mat-option value="2">ENCERRADO</mat-option>
@@ -20,7 +20,7 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Selecione uma prioridade</mat-label>
-                <mat-select required>
+                <mat-select name="prioridade" [formControl]="prioridade" required>
                     <mat-option value="0">BAIXA</mat-option>
                     <mat-option value="1">MÉDIA</mat-option>
                     <mat-option value="2">ALTA</mat-option>
@@ -28,11 +28,10 @@
                 <mat-icon class="material-symbols-outlined" matSuffix>low_priority</mat-icon>
             </mat-form-field>
         </div>
-
         <div class="tecnico">
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Selecione um técnico</mat-label>
-                <mat-select required>
+                <mat-select name="tecnico" [formControl]="tecnico" required>
                     <mat-option value="0">admin</mat-option>
                 </mat-select>
                 <mat-icon class="material-symbols-outlined" matSuffix>engineering</mat-icon>
@@ -41,7 +40,7 @@
         <div class="cliente">
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Selecione um cliente</mat-label>
-                <mat-select required>
+                <mat-select name="cliente" [formControl]="cliente" required>
                     <mat-option value="0">Albert Einstein</mat-option>
                 </mat-select>
                 <mat-icon class="material-symbols-outlined" matSuffix>person</mat-icon>
@@ -51,7 +50,7 @@
         <form class="form">      
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Descrição do chamado</mat-label>
-                <textarea class="descricao" required matInput placeholder="Ex: Trocar fonte do computador"></textarea>
+                <textarea name="descricao" [formControl]="descricao" class="descricao" required matInput placeholder="Ex: Trocar fonte do computador"></textarea>
             </mat-form-field>
         </form>
 
@@ -75,7 +74,7 @@
             <mat-icon class="material-symbols-outlined" matSuffix>password</mat-icon>
         </mat-form-field>
     -->
-        <button (click)="{}" matButton="filled" class="fullWidth mat-elevation-z4">Cadastrar</button>
+        <button [disabled]="!validaCampos()" (click)="{}" matButton="filled" class="fullWidth mat-elevation-z4">Cadastrar</button>
         <button type="button" routerLink="../" matButton="filled" class="cancel-button fullWidth mat-elevation-z4">Cancelar</button>
     </form>
 
