@@ -73,12 +73,8 @@ export class ClienteCreateComponent {
     return emailRegex.test(email) ? null : { emailInvalido: true };
   }
 
-  private formatarDataAtual(): string {
-    const hoje = new Date();
-    const dia = String(hoje.getDate()).padStart(2, '0');
-    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-    const ano = hoje.getFullYear();
-    return `${dia}/${mes}/${ano}`;
+  private formatarDataAtualBr(): string {
+    return new Date().toLocaleDateString('pt-BR');
   }
 
   create(): void {
@@ -86,7 +82,7 @@ export class ClienteCreateComponent {
     this.cliente.cpf = this.cpf.value;
     this.cliente.email = this.email.value;
     this.cliente.senha = this.senha.value;
-    this.cliente.dataCriacao = this.formatarDataAtual();
+    this.cliente.dataCriacao = this.formatarDataAtualBr();
 
     this.service.create(this.cliente).subscribe(() => {
       this.toastr.success('Cliente cadastrado com sucesso', 'Cadastro');

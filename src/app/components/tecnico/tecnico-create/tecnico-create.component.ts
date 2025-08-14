@@ -73,12 +73,8 @@ export class TecnicoCreateComponent {
     return emailRegex.test(email) ? null : { emailInvalido: true };
   }
 
-  private formatarDataAtual(): string {
-    const hoje = new Date();
-    const dia = String(hoje.getDate()).padStart(2, '0');
-    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
-    const ano = hoje.getFullYear();
-    return `${dia}/${mes}/${ano}`;
+  private formatarDataAtualBr(): string {
+    return new Date().toLocaleDateString('pt-BR');
   }
 
   create(): void {
@@ -86,7 +82,7 @@ export class TecnicoCreateComponent {
     this.tecnico.cpf = this.cpf.value;
     this.tecnico.email = this.email.value;
     this.tecnico.senha = this.senha.value;
-    this.tecnico.dataCriacao = this.formatarDataAtual();
+    this.tecnico.dataCriacao = this.formatarDataAtualBr();
 
     this.service.create(this.tecnico).subscribe(() => {
       this.toastr.success('Técnico cadastrado com sucesso', 'Cadastro');
