@@ -1,0 +1,88 @@
+/* Dialog container */
+.custom-dialog-container {
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 24px 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  max-width: 420px;
+  min-width: 300px;
+  width: auto;
+  animation: fadeInDialog 0.25s ease-out;
+  box-sizing: border-box;
+}
+
+@keyframes fadeInDialog {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Título */
+.custom-dialog-container h2[mat-dialog-title] {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 16px 24px 4px 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #111;
+}
+
+/* Conteúdo */
+.custom-dialog-container mat-dialog-content {
+  margin-bottom: 24px;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Mensagem do dialog */
+.dialog-message {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Ações */
+.custom-dialog-container mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 0 24px 16px 24px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Botões */
+.custom-dialog-container button {
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  letter-spacing: 0.4px;
+  min-width: 100px;
+}
+
+/* Botão cancelar - cor clara */
+.custom-dialog-container button[color=""] {
+  background-color: #f1f3f5;
+  color: #333;
+}
+.custom-dialog-container button[color=""]:hover {
+  background-color: #e0e0e0;
+}
+
+/* Botão confirmar - cor vermelha */
+.custom-dialog-container button[color="warn"] {
+  background-color: #e53935;
+  color: white;
+}
+.custom-dialog-container button[color="warn"]:hover {
+  background-color: #d32f2f;
+}
