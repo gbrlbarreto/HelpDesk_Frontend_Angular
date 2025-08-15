@@ -11,6 +11,8 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { ClienteService } from '../../../services/cliente.service';
 import { Cliente } from '../../../models/cliente';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cliente-delete',
@@ -41,7 +43,8 @@ export class ClienteDeleteComponent implements OnInit {
   email: FormControl = new FormControl(null);
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
-  constructor(private service: ClienteService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: ClienteService, private toastr: ToastrService, private router: Router, 
+    private route: ActivatedRoute, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.cliente.id = this.route.snapshot.paramMap.get('id');
@@ -64,22 +67,35 @@ export class ClienteDeleteComponent implements OnInit {
   }
 
   delete(): void {
-    this.cliente.nome = this.nome.value;
-    this.cliente.cpf = this.cpf.value;
-    this.cliente.email = this.email.value;
-    this.cliente.senha = this.senha.value;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'Você tem certeza que deseja excluir este cliente?'
+      },
+      width: '50%',
+      panelClass: 'custom-dialog-container',
+      disableClose: true
+    });
 
-    this.service.delete(this.cliente.id).subscribe(() => {
-      this.toastr.success('Cliente deletado com sucesso', 'Exclusão');
-      this.router.navigate(['/clientes']);
-    }, ex => {
-      if(ex.error.erros){
-        ex.error.erros.forEach(element => {
-          this.toastr.error(element.message);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.cliente.nome = this.nome.value;
+        this.cliente.cpf = this.cpf.value;
+        this.cliente.email = this.email.value;
+        this.cliente.senha = this.senha.value;
+
+        this.service.delete(this.cliente.id).subscribe(() => {
+          this.toastr.success('Cliente deletado com sucesso', 'Exclusão');
+          this.router.navigate(['/clientes']);
+        }, ex => {
+          if (ex.error.erros) {
+            ex.error.erros.forEach(element => {
+              this.toastr.error(element.message);
+            });
+          } else {
+            this.toastr.error(ex.error.message);
+          }
         });
-      } else {
-        this.toastr.error(ex.error.message);
       }
-    })
+    });
   }
 }

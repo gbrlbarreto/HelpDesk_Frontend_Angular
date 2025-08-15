@@ -11,6 +11,8 @@ import { NgxMaskDirective } from 'ngx-mask';
 import { TecnicoService } from '../../../services/tecnico.service';
 import { Tecnico } from '../../../models/tecnico';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tecnico-delete',
@@ -41,7 +43,8 @@ export class TecnicoDeleteComponent implements OnInit {
   email: FormControl = new FormControl(null);
   senha: FormControl = new FormControl(null, Validators.minLength(3));
 
-  constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router, 
+    private route: ActivatedRoute, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tecnico.id = this.route.snapshot.paramMap.get('id');
@@ -64,22 +67,35 @@ export class TecnicoDeleteComponent implements OnInit {
   }
 
   delete(): void {
-    this.tecnico.nome = this.nome.value;
-    this.tecnico.cpf = this.cpf.value;
-    this.tecnico.email = this.email.value;
-    this.tecnico.senha = this.senha.value;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'Você tem certeza que deseja excluir este técnico?'
+      },
+      width: '50%',
+      panelClass: 'custom-dialog-container',
+      disableClose: true
+    });
 
-    this.service.delete(this.tecnico.id).subscribe(() => {
-      this.toastr.success('Técnico deletado com sucesso', 'Exclusão');
-      this.router.navigate(['/tecnicos']);
-    }, ex => {
-      if(ex.error.erros){
-        ex.error.erros.forEach(element => {
-          this.toastr.error(element.message);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tecnico.nome = this.nome.value;
+        this.tecnico.cpf = this.cpf.value;
+        this.tecnico.email = this.email.value;
+        this.tecnico.senha = this.senha.value;
+
+        this.service.delete(this.tecnico.id).subscribe(() => {
+          this.toastr.success('Técnico deletado com sucesso', 'Exclusão');
+          this.router.navigate(['/tecnicos']);
+        }, ex => {
+          if (ex.error.erros) {
+            ex.error.erros.forEach(element => {
+              this.toastr.error(element.message);
+            });
+          } else {
+            this.toastr.error(ex.error.message);
+          }
         });
-      } else {
-        this.toastr.error(ex.error.message);
       }
-    })
+    });
   }
 }
