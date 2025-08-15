@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, model, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -6,8 +6,6 @@ import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { NgxMaskDirective } from 'ngx-mask';
 import { ClienteService } from '../../../services/cliente.service';
 import { MatSelectModule } from '@angular/material/select';
 import { Cliente } from '../../../models/cliente';
@@ -20,12 +18,12 @@ import { TecnicoService } from '../../../services/tecnico.service';
 @Component({
   selector: 'app-chamado-update',
   standalone: true,
-  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, NgxMaskDirective, ReactiveFormsModule, RouterLink, RouterModule],
+  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSelectModule, ReactiveFormsModule, RouterLink, RouterModule],
   templateUrl: './chamado-update.component.html',
   styleUrls: ['./chamado-update.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-
 })
+
 export class ChamadoUpdateComponent implements OnInit {
 
   clientes: Cliente[] = [];
