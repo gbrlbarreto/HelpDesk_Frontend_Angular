@@ -8,11 +8,12 @@ import { RouterLink, RouterModule } from '@angular/router';
 import { Chamado } from '../../../models/chamado';
 import { ChamadoService } from '../../../services/chamado.service';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-chamado-list',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatRadioModule, MatTableModule, RouterModule, RouterLink],
+  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatRadioModule, MatTableModule, MatTooltipModule, RouterModule, RouterLink],
   templateUrl: './chamado-list.component.html',
   styleUrls: ['./chamado-list.component.css']
 })

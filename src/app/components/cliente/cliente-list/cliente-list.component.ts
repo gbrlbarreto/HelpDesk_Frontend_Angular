@@ -7,11 +7,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { Cliente } from '../../../models/cliente';
 import { ClienteService } from '../../../services/cliente.service';
 import { RouterLink, RouterModule } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-cliente-list',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, MatInputModule, MatFormFieldModule, MatButtonModule, RouterModule, RouterLink],
+  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatTableModule, MatTooltipModule, RouterLink, RouterModule],
   templateUrl: './cliente-list.component.html',
   styleUrls: ['./cliente-list.component.css']
 })
