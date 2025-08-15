@@ -5,12 +5,12 @@
 
         <img src="img/login-image.svg" alt="Pagina de Login">
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width" appearance="outline">
             <mat-label>Email</mat-label>
             <input [formControl]="email" name="email" type="email" matInput>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width" appearance="outline">
             <mat-label>Senha</mat-label>
             <input [formControl]="senha" name="senha" matInput [type]="hide() ? 'password' : 'text'" />
             <button class="visibility-button" matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
