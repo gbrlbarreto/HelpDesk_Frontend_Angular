@@ -13,7 +13,7 @@
             <mat-label>Nome</mat-label>
             <input name="nome" [formControl]="nome" matInput>
             <mat-icon class="material-symbols-outlined" matSuffix>person</mat-icon>
-            @if (nome.hasError('required') && cpf.touched) {
+            @if (nome.hasError('required') && nome.touched) {
             <mat-error>Nome é obrigatório.</mat-error>
             }
             @if (nome.hasError('minlength') && nome.touched) {
@@ -49,7 +49,7 @@
             <mat-label>Senha</mat-label>
             <input name="senha" [formControl]="senha" type="password" matInput>
             <mat-icon class="material-symbols-outlined" matSuffix>password</mat-icon>
-            @if (senha.hasError('required') && cpf.touched) {
+            @if (senha.hasError('required') && senha.touched) {
             <mat-error>Senha é obrigatória.</mat-error>
             }
             @if (senha.hasError('minlength') && senha.touched) {
