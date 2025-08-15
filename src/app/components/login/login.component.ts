@@ -35,7 +35,6 @@ export class LoginComponent {
   senha = new FormControl(null, [Validators.required, Validators.minLength(3)]);
 
   constructor(private  toastr: ToastrService, private service: AuthService, private router: Router) {
-    // Sincroniza o valor do form com creds
     this.email.valueChanges.subscribe(value => this.creds.email = value ?? '');
     this.senha.valueChanges.subscribe(value => this.creds.senha = value ?? '');
   }
