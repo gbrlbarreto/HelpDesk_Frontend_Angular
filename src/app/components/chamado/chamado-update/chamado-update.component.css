@@ -86,3 +86,10 @@ p {
     margin-top: 2rem;
     opacity: .5;
 }
+
+.loading-message {
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  margin-top: 8px;
+}

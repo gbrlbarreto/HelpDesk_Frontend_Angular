@@ -46,7 +46,7 @@ export class ChamadoUpdateComponent implements OnInit {
   }
 
   constructor(private chamadoService: ChamadoService, private clienteService: ClienteService, private tecnicoService: TecnicoService,
-    private toastr: ToastrService, private router: Router
+    private toastr: ToastrService, private router: Router, private route: ActivatedRoute
   ) {}
 
   titulo: FormControl = new FormControl(null, Validators.required);
@@ -57,8 +57,23 @@ export class ChamadoUpdateComponent implements OnInit {
   descricao: FormControl = new FormControl(null, Validators.required);
 
   ngOnInit(): void {
+    this.chamado.id = this.route.snapshot.paramMap.get('id');
     this.findAllClientes();
     this.findAllTecnicos();
+    this.findById();
+  }
+
+  findById(): void {
+    this.chamadoService.findById(this.chamado.id).subscribe(resposta => {
+      this.chamado = resposta;
+
+      this.titulo.setValue(this.chamado.titulo);
+      this.status.setValue(String(this.chamado.status));
+      this.prioridade.setValue(String(this.chamado.prioridade));
+      this.tecnico.setValue(this.chamado.tecnico);
+      this.cliente.setValue(this.chamado.cliente);
+      this.descricao.setValue(this.chamado.observacoes);
+    });
   }
 
   private formatarDataAtualBr(): string {
@@ -68,13 +83,21 @@ export class ChamadoUpdateComponent implements OnInit {
   findAllClientes(): void {
     this.clienteService.findAll().subscribe(resposta => {
       this.clientes = resposta;
+      this.loadForm();
     })
   }
 
   findAllTecnicos(): void {
     this.tecnicoService.findAll().subscribe(resposta => {
       this.tecnicos = resposta;
+      this.loadForm();
     })
+  }
+  
+  loadForm(): void {
+    if (this.clientes.length > 0 && this.tecnicos.length > 0) {
+      this.findById();
+    }
   }
 
   validaCampos(): boolean {
