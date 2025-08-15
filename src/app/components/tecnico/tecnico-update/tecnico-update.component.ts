@@ -105,16 +105,19 @@ export class TecnicoUpdateComponent implements OnInit {
     this.tecnico.senha = this.senha.value;
     this.tecnico.dataCriacao = this.formatarDataAtual();
 
-    this.service.update(this.tecnico).subscribe(() => {
-      this.toastr.success('Técnico atualizado com sucesso', 'Atualização');
-      this.router.navigate(['/tecnicos']);
-    }, ex => {
-      if(ex.error.erros){
-        ex.error.erros.forEach(element => {
-          this.toastr.error(element.message);
-        });
-      } else {
-        this.toastr.error(ex.error.message);
+    this.service.update(this.tecnico).subscribe({
+      next: () => {
+        this.toastr.success('Técnico atualizado com sucesso', 'Atualização');
+        this.router.navigate(['/tecnicos']);
+      },
+      error: (ex) => {
+        if (ex.error?.erros) {
+          ex.error.erros.forEach((element: any) => {
+            this.toastr.error(element.message);
+          });
+        } else {
+          this.toastr.error(ex.error?.message || 'Erro inesperado');
+        }
       }
     })
   }

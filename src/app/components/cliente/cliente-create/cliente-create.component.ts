@@ -84,16 +84,19 @@ export class ClienteCreateComponent {
     this.cliente.senha = this.senha.value;
     this.cliente.dataCriacao = this.formatarDataAtualBr();
 
-    this.service.create(this.cliente).subscribe(() => {
-      this.toastr.success('Cliente cadastrado com sucesso', 'Cadastro');
-      this.router.navigate(['/clientes']);
-    }, ex => {
-      if(ex.error.erros){
-        ex.error.erros.forEach(element => {
-          this.toastr.error(element.message);
-        });
-      } else {
-        this.toastr.error(ex.error.message);
+    this.service.create(this.cliente).subscribe({
+      next: () => {
+        this.toastr.success('Cliente cadastrado com sucesso', 'Cadastro');
+        this.router.navigate(['/clientes']);
+      },
+      error: (ex) => {
+        if (ex.error?.erros) {
+          ex.error.erros.forEach((element: any) => {
+            this.toastr.error(element.message);
+          });
+        } else {
+          this.toastr.error(ex.error?.message || 'Erro inesperado');
+        }
       }
     })
   }

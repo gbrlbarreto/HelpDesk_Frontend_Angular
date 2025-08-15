@@ -105,16 +105,19 @@ export class ClienteUpdateComponent implements OnInit {
     this.cliente.senha = this.senha.value;
     this.cliente.dataCriacao = this.formatarDataAtual();
 
-    this.service.update(this.cliente).subscribe(() => {
-      this.toastr.success('Cliente atualizado com sucesso', 'Atualização');
-      this.router.navigate(['/clientes']);
-    }, ex => {
-      if(ex.error.erros){
-        ex.error.erros.forEach(element => {
-          this.toastr.error(element.message);
-        });
-      } else {
-        this.toastr.error(ex.error.message);
+    this.service.update(this.cliente).subscribe({
+      next: () => {
+        this.toastr.success('Cliente atualizado com sucesso', 'Atualização');
+        this.router.navigate(['/clientes']);
+      },
+      error: (ex) => {
+        if (ex.error?.erros) {
+          ex.error.erros.forEach((element: any) => {
+            this.toastr.error(element.message);
+          });
+        } else {
+          this.toastr.error(ex.error?.message || 'Erro inesperado');
+        }
       }
     })
   }

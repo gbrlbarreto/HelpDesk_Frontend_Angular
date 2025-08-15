@@ -84,16 +84,19 @@ export class TecnicoCreateComponent {
     this.tecnico.senha = this.senha.value;
     this.tecnico.dataCriacao = this.formatarDataAtualBr();
 
-    this.service.create(this.tecnico).subscribe(() => {
-      this.toastr.success('Técnico cadastrado com sucesso', 'Cadastro');
-      this.router.navigate(['/tecnicos']);
-    }, ex => {
-      if(ex.error.erros){
-        ex.error.erros.forEach(element => {
-          this.toastr.error(element.message);
-        });
-      } else {
-        this.toastr.error(ex.error.message);
+    this.service.create(this.tecnico).subscribe({
+      next: () => {
+        this.toastr.success('Técnico cadastrado com sucesso', 'Cadastro');
+        this.router.navigate(['/tecnicos']);
+      },
+      error: (ex) => {
+        if (ex.error?.erros) {
+          ex.error.erros.forEach((element: any) => {
+            this.toastr.error(element.message);
+          });
+        } else {
+          this.toastr.error(ex.error?.message || 'Erro inesperado');
+        }
       }
     })
   }
