@@ -7,6 +7,9 @@
             <mat-label>Título do chamado</mat-label>
             <input name="titulo" [formControl]="titulo" required matInput maxlength="55" placeholder="">
             <mat-icon class="material-symbols-outlined" matSuffix>support</mat-icon>
+            @if (titulo.hasError('required') && titulo.touched) {
+            <mat-error>Título é obrigatório.</mat-error>
+            }
         </mat-form-field>
         <div class="status-prioridade">
             <mat-form-field appearance="outline">
@@ -17,6 +20,9 @@
                     <mat-option value="2">ENCERRADO</mat-option>
                 </mat-select>
                 <mat-icon class="material-symbols-outlined" matSuffix>list</mat-icon>
+                @if (status.hasError('required') && status.touched) {
+                <mat-error>Status é obrigatório.</mat-error>
+                }
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Selecione uma prioridade</mat-label>
@@ -26,6 +32,9 @@
                     <mat-option value="2">ALTA</mat-option>
                 </mat-select>
                 <mat-icon class="material-symbols-outlined" matSuffix>low_priority</mat-icon>
+                @if (prioridade.hasError('required') && prioridade.touched) {
+                <mat-error>Prioridade é obrigatória.</mat-error>
+                }
             </mat-form-field>
         </div>
         <div class="tecnico">
@@ -37,6 +46,9 @@
                     }
                 </mat-select>
                 <mat-icon class="material-symbols-outlined" matSuffix>engineering</mat-icon>
+                @if (tecnico.hasError('required') && tecnico.touched) {
+                <mat-error>Técnico é obrigatório.</mat-error>
+                }
             </mat-form-field>
         </div>
         <div class="cliente">
@@ -48,12 +60,18 @@
                     }
                 </mat-select>
                 <mat-icon class="material-symbols-outlined" matSuffix>person</mat-icon>
+                @if (cliente.hasError('required') && cliente.touched) {
+                <mat-error>Cliente é obrigatório.</mat-error>
+                }
             </mat-form-field>
         </div>
         <form class="form">      
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Descrição do chamado</mat-label>
                 <textarea name="descricao" [formControl]="descricao" class="descricao" required matInput placeholder="Ex: Trocar fonte do computador"></textarea>
+                @if (descricao.hasError('required') && descricao.touched) {
+                <mat-error>Descrição é obrigatória.</mat-error>
+                }
             </mat-form-field>
         </form>
 
