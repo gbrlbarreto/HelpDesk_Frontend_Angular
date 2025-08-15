@@ -44,6 +44,6 @@ export class NavComponent implements AfterViewInit {
   logout() {
     this.router.navigate(['login']);
     this.authService.logout();
-    this.toastr.info('Logout realizado com sucesso', 'Logout', {timeOut: 5000});
+    this.toastr.info('Logout realizado com sucesso', 'Logout', {timeOut: 4000});
   }
 }
