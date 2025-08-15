@@ -1,1 +1,65 @@
-<p>chamado-read.component works!</p>
+<div class="container mat-elevation-z8">
+    <form class="form">
+        <h1 class="fullWidth">Dados do Chamado</h1>
+        <img class="fullWidth" src="img/chamado-create.svg" alt="Imagem de Chamado Read">
+
+        <mat-form-field class="fullWidth" appearance="outline">
+            <mat-label>Título do chamado</mat-label>
+            <input name="titulo" [formControl]="titulo" required matInput maxlength="55" placeholder="">
+            <mat-icon class="material-symbols-outlined" matSuffix>support</mat-icon>
+        </mat-form-field>
+        <div class="status-prioridade">
+            <mat-form-field appearance="outline">
+                <mat-label>Selecione um status</mat-label>
+                <mat-select name="status" [formControl]="status" required>
+                    <mat-option value="0">ABERTO</mat-option>
+                    <mat-option value="1">EM ANDAMENTO</mat-option>
+                    <mat-option value="2">ENCERRADO</mat-option>
+                </mat-select>
+                <mat-icon class="material-symbols-outlined" matSuffix>list</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Selecione uma prioridade</mat-label>
+                <mat-select name="prioridade" [formControl]="prioridade" required>
+                    <mat-option value="0">BAIXA</mat-option>
+                    <mat-option value="1">MÉDIA</mat-option>
+                    <mat-option value="2">ALTA</mat-option>
+                </mat-select>
+                <mat-icon class="material-symbols-outlined" matSuffix>low_priority</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="tecnico">
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Selecione um técnico</mat-label>
+                <mat-select name="tecnico" [formControl]="tecnico" required>
+                    @for (tec of tecnicos; track tec) {
+                    <mat-option [value]="tec.id">{{ tec.nome }}</mat-option>
+                    }
+                </mat-select>
+                <mat-icon class="material-symbols-outlined" matSuffix>engineering</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="cliente">
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Selecione um cliente</mat-label>
+                <mat-select name="cliente" [formControl]="cliente" required>
+                    @for (cli of clientes; track cli) {
+                    <mat-option [value]="cli.id">{{ cli.nome }}</mat-option>
+                    }
+                </mat-select>
+                <mat-icon class="material-symbols-outlined" matSuffix>person</mat-icon>
+            </mat-form-field>
+        </div>
+        <form class="form">      
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Descrição do chamado</mat-label>
+                <textarea name="descricao" [formControl]="descricao" class="descricao" required matInput></textarea>
+            </mat-form-field>
+        </form>
+
+        <button type="button" routerLink="../../" matButton="filled" class="return-button fullWidth mat-elevation-z4">Voltar</button>
+    </form>
+
+
+    <p class="fullWidth">Desenvolvido por Gabriel Barreto</p>
+</div>
