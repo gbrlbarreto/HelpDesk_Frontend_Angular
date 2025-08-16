@@ -27,6 +27,15 @@ table {
   color: rgb(24, 133, 242);
 }
 
+.password-icon {
+  font-size: 24px;
+  margin-right: 7px;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  color: rgb(214, 163, 34);
+}
+
 .delete-icon {
   font-size: 24px;
   margin-right: 7px;

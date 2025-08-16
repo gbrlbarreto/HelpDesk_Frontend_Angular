@@ -4,9 +4,9 @@
         <img class="img-custom" src="img/cliente-create.png" alt="Imagem de Cliente Create">
 
         <section class="section">
-            <mat-checkbox (click)="addPerfil(0)" class="margin">Admin</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(1)" [checked]="true" class="margin">Cliente</mat-checkbox>
-            <mat-checkbox (click)="addPerfil(2)" class="margin">Técnico</mat-checkbox>
+            <mat-checkbox disabled (click)="addPerfil(0)" class="margin">Admin</mat-checkbox>
+            <mat-checkbox disabled (click)="addPerfil(1)" [checked]="true" class="margin">Cliente</mat-checkbox>
+            <mat-checkbox disabled (click)="addPerfil(2)" class="margin">Técnico</mat-checkbox>
         </section>
 
         <mat-form-field class="fullWidth" appearance="fill">

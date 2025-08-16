@@ -7,27 +7,26 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { NgxMaskDirective } from 'ngx-mask';
-import { ClienteService } from '../../../services/cliente.service';
-import { Cliente } from '../../../models/cliente';
+import { TecnicoService } from '../../../services/tecnico.service';
+import { Tecnico } from '../../../models/tecnico';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cliente-update',
+  selector: 'app-cliente-password',
   standalone: true,
-  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, NgxMaskDirective, ReactiveFormsModule, RouterLink, RouterModule],
-  templateUrl: './cliente-update.component.html',
-  styleUrls: ['./cliente-update.component.css'],
+  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, ReactiveFormsModule, RouterLink, RouterModule],
+  templateUrl: './tecnico-password.component.html',
+  styleUrls: ['./tecnico-password.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ClienteUpdateComponent implements OnInit {
+export class TecnicoPasswordComponent implements OnInit {
   readonly checked = model(false);
   readonly indeterminate = model(false);
   readonly labelPosition = model<'before' | 'after'>('after');
   readonly disabled = model(false);
 
-  cliente: Cliente = {
+  tecnico: Tecnico = {
     id: '',
     nome: '',
     cpf: '',
@@ -40,11 +39,12 @@ export class ClienteUpdateComponent implements OnInit {
   nome: FormControl = new FormControl(null, Validators.minLength(3));
   cpf: FormControl = new FormControl(null, [Validators.required, this.validaCpf.bind(this)]);
   email: FormControl = new FormControl(null, [Validators.required, this.validaEmail.bind(this)]);
+  senha: FormControl = new FormControl(null, Validators.minLength(3));
 
-  constructor(private service: ClienteService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.cliente.id = this.route.snapshot.paramMap.get('id');
+    this.tecnico.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
@@ -86,27 +86,28 @@ export class ClienteUpdateComponent implements OnInit {
   }
 
   findById(): void {
-    this.service.findById(this.cliente.id).subscribe(resposta => {
+    this.service.findById(this.tecnico.id).subscribe(resposta => {
       resposta.perfis = [];
-      resposta.senha = '';
-      this.cliente = resposta;
+      this.tecnico = resposta;
 
-      this.nome.setValue(this.cliente.nome);
-      this.cpf.setValue(this.cliente.cpf);
-      this.email.setValue(this.cliente.email);
+      this.nome.setValue(this.tecnico.nome);
+      this.cpf.setValue(this.tecnico.cpf);
+      this.email.setValue(this.tecnico.email);
+      this.senha.setValue(null);
     });
   }
 
   update(): void {
-    this.cliente.nome = this.nome.value;
-    this.cliente.cpf = this.cpf.value;
-    this.cliente.email = this.email.value;
-    this.cliente.dataCriacao = this.formatarDataAtual();
+    this.tecnico.nome = this.nome.value;
+    this.tecnico.cpf = this.cpf.value;
+    this.tecnico.email = this.email.value;
+    this.tecnico.senha = this.senha.value;
+    this.tecnico.dataCriacao = this.formatarDataAtual();
 
-    this.service.update(this.cliente).subscribe({
+    this.service.update(this.tecnico).subscribe({
       next: () => {
-        this.toastr.success('Cliente atualizado com sucesso', 'Atualização');
-        this.router.navigate(['/clientes']);
+        this.toastr.success('Senha alterada com sucesso', 'Atualização');
+        this.router.navigate(['/tecnicos']);
       },
       error: (ex) => {
         if (ex.error?.erros) {
@@ -121,14 +122,14 @@ export class ClienteUpdateComponent implements OnInit {
   }
 
   addPerfil(perfil: any): void {
-    if(this.cliente.perfis.includes(perfil)){
-      this.cliente.perfis.splice(this.cliente.perfis.indexOf(perfil), 1);
+    if(this.tecnico.perfis.includes(perfil)){
+      this.tecnico.perfis.splice(this.tecnico.perfis.indexOf(perfil), 1);
     } else {
-      this.cliente.perfis.push(perfil);
+      this.tecnico.perfis.push(perfil);
     }
   }
 
   validaCampos(): boolean {
-    return this.nome.valid && this.cpf.valid && this.email.valid;
+    return this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid;
   }
 }

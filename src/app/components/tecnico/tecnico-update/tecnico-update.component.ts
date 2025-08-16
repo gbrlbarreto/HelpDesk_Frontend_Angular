@@ -19,8 +19,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './tecnico-update.component.html',
   styleUrls: ['./tecnico-update.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-
 })
+
 export class TecnicoUpdateComponent implements OnInit {
   readonly checked = model(false);
   readonly indeterminate = model(false);
@@ -40,7 +40,6 @@ export class TecnicoUpdateComponent implements OnInit {
   nome: FormControl = new FormControl(null, Validators.minLength(3));
   cpf: FormControl = new FormControl(null, [Validators.required, this.validaCpf.bind(this)]);
   email: FormControl = new FormControl(null, [Validators.required, this.validaEmail.bind(this)]);
-  senha: FormControl = new FormControl(null, Validators.minLength(3));
 
   constructor(private service: TecnicoService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
 
@@ -89,12 +88,12 @@ export class TecnicoUpdateComponent implements OnInit {
   findById(): void {
     this.service.findById(this.tecnico.id).subscribe(resposta => {
       resposta.perfis = [];
+      resposta.senha = '';
       this.tecnico = resposta;
 
       this.nome.setValue(this.tecnico.nome);
       this.cpf.setValue(this.tecnico.cpf);
       this.email.setValue(this.tecnico.email);
-      this.senha.setValue(this.tecnico.senha);
     });
   }
 
@@ -102,7 +101,6 @@ export class TecnicoUpdateComponent implements OnInit {
     this.tecnico.nome = this.nome.value;
     this.tecnico.cpf = this.cpf.value;
     this.tecnico.email = this.email.value;
-    this.tecnico.senha = this.senha.value;
     this.tecnico.dataCriacao = this.formatarDataAtual();
 
     this.service.update(this.tecnico).subscribe({
@@ -131,6 +129,6 @@ export class TecnicoUpdateComponent implements OnInit {
   }
 
   validaCampos(): boolean {
-    return this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid;
+    return this.nome.valid && this.cpf.valid && this.email.valid;
   }
 }

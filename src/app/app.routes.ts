@@ -15,6 +15,8 @@ import { ChamadoListComponent } from './components/chamado/chamado-list/chamado-
 import { ChamadoCreateComponent } from './components/chamado/chamado-create/chamado-create.component';
 import { ChamadoUpdateComponent } from './components/chamado/chamado-update/chamado-update.component';
 import { ChamadoReadComponent } from './components/chamado/chamado-read/chamado-read.component';
+import { ClientePasswordComponent } from './components/cliente/cliente-password/cliente-password.component';
+import { TecnicoPasswordComponent } from './components/tecnico/tecnico-password/tecnico-password.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -26,11 +28,13 @@ export const routes: Routes = [
             { path: 'tecnicos', component: TecnicoListComponent },
             { path: 'tecnicos/create', component: TecnicoCreateComponent },
             { path: 'tecnicos/update/:id', component: TecnicoUpdateComponent },
+            { path: 'tecnicos/change-password/:id', component: TecnicoPasswordComponent },
             { path: 'tecnicos/delete/:id', component: TecnicoDeleteComponent },
 
             { path: 'clientes', component: ClienteListComponent },
             { path: 'clientes/create', component: ClienteCreateComponent },
             { path: 'clientes/update/:id', component: ClienteUpdateComponent },
+            { path: 'clientes/change-password/:id', component: ClientePasswordComponent },
             { path: 'clientes/delete/:id', component: ClienteDeleteComponent },
 
             { path: 'chamados', component: ChamadoListComponent },

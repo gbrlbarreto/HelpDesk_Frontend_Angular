@@ -7,21 +7,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { NgxMaskDirective } from 'ngx-mask';
 import { ClienteService } from '../../../services/cliente.service';
 import { Cliente } from '../../../models/cliente';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cliente-update',
+  selector: 'app-cliente-password',
   standalone: true,
-  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, NgxMaskDirective, ReactiveFormsModule, RouterLink, RouterModule],
-  templateUrl: './cliente-update.component.html',
-  styleUrls: ['./cliente-update.component.css'],
+  imports: [FormsModule, MatError, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatIconModule, MatInputModule, ReactiveFormsModule, RouterLink, RouterModule],
+  templateUrl: './cliente-password.component.html',
+  styleUrls: ['./cliente-password.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class ClienteUpdateComponent implements OnInit {
+export class ClientePasswordComponent implements OnInit {
   readonly checked = model(false);
   readonly indeterminate = model(false);
   readonly labelPosition = model<'before' | 'after'>('after');
@@ -40,6 +39,7 @@ export class ClienteUpdateComponent implements OnInit {
   nome: FormControl = new FormControl(null, Validators.minLength(3));
   cpf: FormControl = new FormControl(null, [Validators.required, this.validaCpf.bind(this)]);
   email: FormControl = new FormControl(null, [Validators.required, this.validaEmail.bind(this)]);
+  senha: FormControl = new FormControl(null, Validators.minLength(3));
 
   constructor(private service: ClienteService, private toastr: ToastrService, private router: Router, private route: ActivatedRoute) { }
 
@@ -88,12 +88,12 @@ export class ClienteUpdateComponent implements OnInit {
   findById(): void {
     this.service.findById(this.cliente.id).subscribe(resposta => {
       resposta.perfis = [];
-      resposta.senha = '';
       this.cliente = resposta;
 
       this.nome.setValue(this.cliente.nome);
       this.cpf.setValue(this.cliente.cpf);
       this.email.setValue(this.cliente.email);
+      this.senha.setValue(null);
     });
   }
 
@@ -101,11 +101,12 @@ export class ClienteUpdateComponent implements OnInit {
     this.cliente.nome = this.nome.value;
     this.cliente.cpf = this.cpf.value;
     this.cliente.email = this.email.value;
+    this.cliente.senha = this.senha.value;
     this.cliente.dataCriacao = this.formatarDataAtual();
 
     this.service.update(this.cliente).subscribe({
       next: () => {
-        this.toastr.success('Cliente atualizado com sucesso', 'Atualização');
+        this.toastr.success('Senha alterada com sucesso', 'Atualização');
         this.router.navigate(['/clientes']);
       },
       error: (ex) => {
@@ -129,6 +130,6 @@ export class ClienteUpdateComponent implements OnInit {
   }
 
   validaCampos(): boolean {
-    return this.nome.valid && this.cpf.valid && this.email.valid;
+    return this.nome.valid && this.cpf.valid && this.email.valid && this.senha.valid;
   }
 }
