@@ -55,7 +55,7 @@ Sistema completo de autenticação e gerenciamento de chamados, desenvolvido com
 ## 🧪 Teste Rápido (Versão de Produção)
 
 > 🟢 **Backend Online:**  
-🔗 https://helpdesk-backend-752p.onrender.com
+🔗 https://helpdeskspringboot-production.up.railway.app
 
 > 🟡 **Frontend Online:**  
 🔗 (link deploy)
