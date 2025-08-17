@@ -58,7 +58,7 @@ Sistema completo de autenticação e gerenciamento de chamados, desenvolvido com
 🔗 https://helpdeskspringboot-production.up.railway.app
 
 > 🟡 **Frontend Online:**  
-🔗 (link deploy)
+🔗 https://helpdesk-gbt.web.app
 
 ---
 
@@ -72,4 +72,5 @@ helpdesk/
 ├── frontend/
 │   └── src/
 │   └── angular.json
+│   └── dist/
 └── README.md
