@@ -60,6 +60,10 @@ Sistema completo de autenticação e gerenciamento de chamados, desenvolvido com
 > 🟡 **Frontend Online:**  
 🔗 https://helpdesk-gbt.web.app
 
+> 🔐 **Credenciais de Teste:**
+🔗 Email: tecnicoteste@teste.com  
+🔗 Senha: 123
+
 ---
 
 ## 🧱 Estrutura do Projeto
