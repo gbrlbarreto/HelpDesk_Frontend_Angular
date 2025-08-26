@@ -58,11 +58,11 @@ Sistema completo de autenticação e gerenciamento de chamados, desenvolvido com
 🔗 https://helpdeskspringboot-production.up.railway.app
 
 > 🟡 **Frontend Online:**  
-🔗 https://helpdesk-gbt.web.app
+🔗 https://helpdesk-sb.web.app
 
 > 🔐 **Credenciais de Teste:**
-🔗 Email: tecnicoteste@teste.com  
-🔗 Senha: 123
+🔗 Email: admin@test.com  
+🔗 Senha: 123456
 
 ---
 
